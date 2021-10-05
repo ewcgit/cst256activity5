@@ -10,6 +10,8 @@ use App\Models\UserModel;
 class LoginController extends Controller{
     // Uses a request feature as requested.
     public function index(Request $r){
+        // Validate the Form Data (note will automatically redirect back to Login View if errors)
+        $this->validateForm($r);
         $username=$r->input('username');
         $password=$r->input('password');
         $securityservice1 = new SecurityService();
@@ -26,5 +28,13 @@ class LoginController extends Controller{
                 return view("LoginPassed3")->with($usermodel1); // Other login.
             }
         }
+    }
+    private function validateForm(Request $request){
+        // Setup Data Validation Rules for Login Form
+        $rules = ['username' => 'Required | Between:4,10 | Alpha',
+            'password' => 'Required | Between:4,10'];
+        
+        // Run Data Validation Rules
+        $this->validate($request, $rules);
     }
 }
