@@ -8,15 +8,30 @@ use App\Models\userModel;
 use App\Services\Utility\ILogger;
 use app\Services\Utility\MyLogger1;
 use app\Services\Utility\MyLogger2;
+use app\Services\Business\SecurityService;
+use App\Models\usertableModel;
+use App\Services\Data\UserTableDAO;
 
 class SecurityDAO{
     // For database connections and the queries.
     public $db;
     private $con;
     public $ilogger;
-    public $ilogger2;    
+    public $ilogger2;
+    public $users1;
+    public $users2;
     public function __construct(){ // A constructor.
         $this->con = mysqli_connect("localhost", "root", "", "activity2"); // The default XAMPP settings.
+    }
+    
+    public function findAllUsers(){
+        $this->users1 = new UserTableDAO();
+        return $this->users1->index();
+    }
+    
+    public function findUserByID($id){
+        $this->users2 = new UserTableDAO();
+        return $this->users2->show($id);
     }
     
     public function findByUser(UserModel $validation){

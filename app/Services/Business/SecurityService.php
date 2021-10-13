@@ -13,12 +13,16 @@ use App\Services\Data\OrderDao;
 use App\Services\Utility\ILogger;
 use app\Services\Utility\MyLogger1;
 use app\Services\Utility\MyLogger2;
+use App\Models\usertableModel;
+use App\Services\Data\UserTableDAO;
 
 class SecurityService{
     private $verification;
     private $addedCustomer;
     public $ilogger;
     public $ilogger2;
+    public $users1;
+    public $users2;
     
     public function login(userModel $verify){ // Logs in user with the correct username and password combination.
         // Important logs.
@@ -41,6 +45,16 @@ class SecurityService{
     public function addOrder(orderModel $order){
         $this->addedOrder = new OrderDao();
         return $this->addedOrder->addOrder($order);
+    }
+    
+    public function getAllUsers(){
+        $this->users1 = new SecurityDAO();
+        return $this->users1->findAllUsers();
+    }
+    
+    public function getUser($id){
+        $this->users2 = new SecurityDAO();
+        return $this->users2->findUserById($id);;
     }
 }
 ?>

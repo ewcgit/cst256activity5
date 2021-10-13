@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::get('/hello', function () {
@@ -44,6 +44,20 @@ Route::post('/addorder','App\Http\Controllers\orderController@index');
 Route::get('/login', function () { return view('login'); });
 
 Route::post('/dologin','App\Http\Controllers\LoginController@index');
+
+Route::resource('/usersrest', 'App\Http\Controllers\UsersRestController');
+
+Route::get('/usersrest1', 'App\Http\Controllers\UsersRestController@index');
+
+Route::get('/usersrest2', 'App\Http\Controllers\UsersRestController@show');
+
+Route::get('/usersrest3', 'App\Http\Controllers\RestClientController@index');
+
+Route::get('/usersrest4', 'App\Http\Controllers\RestClientController@show');
+
+Route::get('/middlewareTest', 'App\Http\Controllers\CustomerController@middlewareTest');
+
+Route::get('/loggingservice','App\Http\Controllers\TestLoggingController@index');
 
 Route::get('/login2', function (){
     return view('login2');
