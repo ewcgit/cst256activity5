@@ -27,6 +27,8 @@ Route::get('/helloworld', function () {
 
 // Route::get('/test', 'App\Http\Controllers\TestController@test');
 
+// Non-outdated URLs.
+
 Route::get('/test', 'App\Http\Controllers\TestController@test2');
 
 Route::post('/whoami','App\Http\Controllers\WhatsMyNameController@index'); 
